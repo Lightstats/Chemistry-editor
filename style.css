@@ -1,0 +1,43 @@
+body{
+    background: url('images/pink\,\ chemistry\ aesthetic.jpg') center/ cover no-repeat;
+}
+
+header{
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+
+
+#input {
+    border: 0px;
+    background-color: rgb(244, 244, 238);
+    width: 100%;
+    height: 100%;
+}
+
+
+#editor{
+    border: 2px black solid;
+    width: 90%;
+    height: 90vh;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0px auto;
+}
+
+button{
+    background-color: rgb(48, 140, 245);
+    border: none;
+    border-radius: 17px;
+    padding: 12px;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(108, 172, 244);
+}
