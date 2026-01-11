@@ -8,6 +8,51 @@ let formattedEquation = ""
 let insideQuotes = false;
 let isBold = false;
 
+let fileHandle;
+
+
+async function openFiles() {
+   let [fileHandle] = await window.showOpenFilePicker( {
+    types: [
+      {
+        description: "HTML or Text",
+        accept: {
+          "text/html": [".html"],
+          "text/plain": [".txt"]
+        }
+      }
+    ]
+  });
+   let fileData = await fileHandle.getFile();
+   let text = await fileData.text();
+   textArea.innerHTML = text;
+}
+
+async function saveAs() {
+    fileHandle = await window.showSaveFilePicker({
+    suggestedName: "Chemnotes.html",
+    types: [
+      {
+        description: "HTML File",
+        accept: { "text/html": [".html"] }
+      },
+      {
+        description: "Text File",
+        accept: { "text/plain": [".txt"] }
+      }
+    ]
+  });
+}
+
+async function save() {
+    if (!fileHandle) {
+        await saveAs();
+    }
+
+    let stream = await fileHandle.createWritable();
+    await stream.write(textArea.innerHTML);
+    await stream.close();
+}
 
 textArea.addEventListener("input", function() {
     const currentPlace = textArea.selectionStart;
@@ -37,34 +82,11 @@ textArea.addEventListener("input", function() {
     }
     
 
-} )
+} );
 
 boldButton. addEventListener("click", function () {
-    let start = textArea.selectionStart;
-    let end = textArea.selectionEnd;
-    let selectedText = textArea.value.substring(start, end);
-    const startBoldTags = "<b>";
-    const endBoldTags = "</b>";
-
-    if (start != end) {
-        if (isBold == false) {
-            let formattedText = startBoldTags + selectedText + endBoldTags;
-            textArea.value = textArea.value.slice(0, start) + formattedText + textArea.value.slice(end);
-            textArea.selectionStart = start + formattedText.length;
-            textArea.selectionEnd = textArea.selectionStart;
-            isBold = !isBold;
-        } else {
-            let formattedText = "";
-            formattedText = selectedText.replace("<b>", "").replace("</b>", "");
-            console.log(formattedText);
-            textArea.value = textArea.value.slice(0, start) + formattedText + textArea.value.slice(end);
-            textArea.selectionStart = start + formattedText.length;
-            textArea.selectionEnd = textArea.selectionStart;
-            isBold = !isBold;
-        }
-    }
-    textArea.focus();
-})
+    bolden();
+});
 
 
 // let text = "feso4 plus h20 equals fe03 plus h2";
@@ -135,5 +157,37 @@ function findWords(text) {
 
 
 function bolden() {
+    let selection = window.getSelection();
+    if (selection.isCollapsed) {
+        textArea.focus();
+        return;
+    }
+
+    const range = selection.getRangeAt(0);
+
+    const selectedText = range.extractContents();
+
+    if (selectedText.length > 0) {
+        if (isBold == false) {
+            const boldTag = document.createElement("b");
+            boldTag.appendChild(selectedText);
+            range.insertNode(boldTag);
+            console.log(selectedText);
+            range.setStartAfter(boldTag);
+            range.collapse(true);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            console.log(boldTag);
+            isBold = !isBold
+            
+        } else {
+            range.insertNode(selectedText);
+            range.collapse(false);
+            selection.removeAllRanges();
+            selection.addRange(range);
+
+            isBold = !isBold;
+        }
+    }
 
 }
