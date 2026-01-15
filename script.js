@@ -65,6 +65,8 @@ async function save() {
 }
 
 
+// Add subscript 
+
 // formatting general text
 function bolden() {
   document.execCommand("bold");
