@@ -65,7 +65,8 @@ async function save() {
 }
 
 
-// Add subscript 
+// Add subscript
+// Add untitled document and name tag
 
 // formatting general text
 function bolden() {
