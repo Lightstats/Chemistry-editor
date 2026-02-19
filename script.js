@@ -122,7 +122,7 @@ textArea.addEventListener("input", (event) => {
     return;
   }
 
-  // Closing quote typed
+  
   insideQuotes = false;
 
   // Build a full range from the opening quote to the closing quote (inclusive).
@@ -227,5 +227,15 @@ textArea.addEventListener("keydown", (event) => {
     if (event.ctrlKey && event.shiftKey && event.code === "Digit8") {
         event.preventDefault();
         document.execCommand("insertUnorderedList");
+    }
+
+    if (event.ctrlKey && event.key === "ArrowUp") {
+        event.preventDefault();
+        document.execCommand("superscript");
+    }
+
+    if (event.ctrlKey && event.key === "ArrowDown") {
+        event.preventDefault();
+        document.execCommand("subscript");
     }
 });
