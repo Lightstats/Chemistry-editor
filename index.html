@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chemistry Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="./images/test.png">
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -13,15 +15,16 @@
         <button onclick="bolden()" id="bold">Bold</button>
         <button onclick="italicize()">Italic</button>
         <button onclick="save()">Save</button>
+        <button onclick="opened()" id="help"><i  class="fa-solid fa-circle-question"></i></button>
     </header>
     <main>
         <div id="alert">
             <p>Changes saved!&#9989;</p>
         </div>
         <div id="instructions">
-            <h3>Welcome to the Chem editor</h3>
+            <h3>Welcome to the Chem editor</h3><span><i onclick="closed()" class="fa-solid fa-circle-xmark close"></i></span>
             <p>The rules are:</p>
-            <ul>
+            <ul id="rules">
                 <li>use " at the begining and end of a chemical equation</li>
                 <li>Type out plus and equals</li>
                 <li>Use the bold and italic buttons to format text</li>

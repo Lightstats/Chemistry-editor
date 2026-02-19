@@ -11,6 +11,15 @@ header{
     position: relative;
 }
 
+#help {
+    display: none;
+    background-color: black;
+    border-radius: 50%;
+}
+
+#help:hover{
+    background-color: grey;
+}
 
 #alert {
     background-color: white;
@@ -27,12 +36,14 @@ header{
     display: none;
 }
 
+
 p{
     padding: 0px;
     margin: 5px;
 }
 
 #instructions {
+    display: block;
     background-color: white;
     width: fit-content;
     padding: 3px 5px;
@@ -44,10 +55,23 @@ p{
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-    animation: showThenHide 2s ease forwards;
 }
 
-ul {
+#instructions span{
+    position: absolute;
+    left: 90%;
+    top: -3%;
+}
+
+#instructions span:hover{
+    cursor: pointer;
+}
+
+.close{
+    font-size: 25px;
+}
+
+#rules {
     width: fit-content;
     margin: 9px auto;
     text-align: left;
