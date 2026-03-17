@@ -59,14 +59,15 @@ async function save() {
     let stream = await fileHandle.createWritable();
     await stream.write(textArea.innerHTML);
     await stream.close();
+}
 
+function alert () {
     let saveNotif = document.getElementById("alert");
     saveNotif.style.display = "block";
     
     setTimeout(()=>{
         saveNotif.style.display = "none";
     }, 1300)
-
 }
 
 
@@ -128,6 +129,7 @@ function setCaretAfter(node) {
 }
 
 textArea.addEventListener("input", (event) => {
+  save();
   const charTyped = event.data;
 
   if (charTyped !== '"') return;
