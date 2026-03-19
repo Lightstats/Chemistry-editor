@@ -182,9 +182,9 @@ textArea.addEventListener("input", (event) => {
 
 // rules/ instruction notifications
 setTimeout(() => {
-    textArea.classList.add("unblur");
-    helpButton.style.display = "block";
     closed();
+    helpButton.style.display = "block";
+    
 
 }, 2900);
 
@@ -195,6 +195,7 @@ function closed(){
     const instructions = document.getElementById("instructions");
     instructions.style.display = "none";
     instructionsDisplay = false;
+    textArea.classList.add("unblur");
 }
 
 function opened(){
