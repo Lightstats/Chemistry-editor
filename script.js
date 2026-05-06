@@ -221,6 +221,8 @@ function formatEquation(text) {
                 finalSentence += " + ";
             } else if (word.toLowerCase() == "equals") {
                 finalSentence += " -> ";
+            } else if (word.toLowerCase() == "change") {
+                finalSentence += " &Delta; ";
             } else {
                 let result = "";
                 for (let i = 0; i < word.length; i++) {
@@ -241,6 +243,8 @@ function formatEquation(text) {
                 finalSentence += "+";
             } else if ((word + result).toLowerCase() == "equals") {
                 finalSentence += " -> ";
+            }  else if (word.toLowerCase() == "change") {
+                finalSentence += " &Delta; ";
             } else {
                 finalSentence += word.toUpperCase() + result;
             }
